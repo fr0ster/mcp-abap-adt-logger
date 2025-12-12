@@ -44,7 +44,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@mcp-abap-adt/interfaces": "^0.1.14"
+    "@mcp-abap-adt/interfaces": "^0.1.16"
   },
   "peerDependencies": {
     "pino": "^10.1.0",
