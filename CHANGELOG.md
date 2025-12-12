@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2025-12-19
+
+### Added
+- **PinoLogger Implementation**: Added `PinoLogger` class for structured logging using Pino
+  - Async logger for server use with pino-pretty formatting
+  - Falls back to `DefaultLogger` if pino is not installed
+  - Includes icons in log messages (ℹ️ info, 🐛 debug, ⚠️ warn, 💥 error)
+  - Optional peer dependencies: `pino@^10.1.0` and `pino-pretty@^13.1.3`
+  - **Usage**: `import { PinoLogger } from '@mcp-abap-adt/logger'; const logger = new PinoLogger();`
+- **LogLevel from Interfaces**: Now uses `LogLevel` enum from `@mcp-abap-adt/interfaces` package
+  - Standardized log level constants across all packages
+  - **Migration**: Import `LogLevel` from `@mcp-abap-adt/interfaces` instead of local enum
+
+### Changed
+- **Package Structure Refactoring**: Reorganized code into separate files
+  - `default-logger.ts`: `DefaultLogger` implementation with icons and prefixes
+  - `pino-logger.ts`: `PinoLogger` implementation
+  - `types.ts`: Type definitions and utility functions (`getLogLevel`, `Logger` type)
+  - `index.ts`: Main entry point with all exports
+- **DefaultLogger Enhancement**: Added icons to log messages
+  - Format: `[LEVEL] icon message` (e.g., `[INFO] ℹ️ Test message`)
+  - Icons: ℹ️ (info), 🐛 (debug), ⚠️ (warn), 💥 (error)
+- **Dependency Update**: Updated `@mcp-abap-adt/interfaces` to `^0.1.14` (requires LogLevel export)
+
+### Removed
+- **Local LogLevel Enum**: Removed duplicate `LogLevel` enum from logger package
+  - Now imported from `@mcp-abap-adt/interfaces`
+  - **Migration**: Update imports: `import { LogLevel } from '@mcp-abap-adt/interfaces';`
+
 ## [0.1.1] - 2025-12-05
 
 ### Changed
