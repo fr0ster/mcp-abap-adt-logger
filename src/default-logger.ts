@@ -5,7 +5,7 @@
  * - warn: errors and warnings
  * - info: errors, warnings, and info (default)
  * - debug: all messages
- * 
+ *
  * Uses process.stdout/stderr for clean output without stack traces
  */
 
@@ -20,7 +20,7 @@ export class DefaultLogger implements ILogger {
     this.logLevel = logLevel ?? getLogLevel();
   }
 
-  info(message: string, meta?: any): void {
+  info(message: string, meta?: unknown): void {
     if (this.logLevel >= LogLevel.INFO) {
       const icon = 'ℹ️';
       if (meta) {
@@ -32,7 +32,7 @@ export class DefaultLogger implements ILogger {
     }
   }
 
-  debug(message: string, meta?: any): void {
+  debug(message: string, meta?: unknown): void {
     if (this.logLevel >= LogLevel.DEBUG) {
       const icon = '🐛';
       if (meta) {
@@ -44,7 +44,7 @@ export class DefaultLogger implements ILogger {
     }
   }
 
-  error(message: string, meta?: any): void {
+  error(message: string, meta?: unknown): void {
     if (this.logLevel >= LogLevel.ERROR) {
       const icon = '💥';
       if (meta) {
@@ -56,7 +56,7 @@ export class DefaultLogger implements ILogger {
     }
   }
 
-  warn(message: string, meta?: any): void {
+  warn(message: string, meta?: unknown): void {
     if (this.logLevel >= LogLevel.WARN) {
       const icon = '⚠️';
       if (meta) {

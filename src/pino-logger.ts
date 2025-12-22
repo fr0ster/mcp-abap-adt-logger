@@ -1,10 +1,10 @@
 /**
  * PinoLogger - Structured logging using Pino (optional dependency)
- * 
+ *
  * If pino is not installed, falls back to DefaultLogger behavior.
- * 
+ *
  * Install pino: npm install pino pino-pretty
- * 
+ *
  * Usage:
  * ```typescript
  * import { PinoLogger } from '@mcp-abap-adt/logger';
@@ -18,8 +18,15 @@ import { LogLevel } from '@mcp-abap-adt/interfaces';
 import { DefaultLogger } from './default-logger';
 import { getLogLevel } from './types';
 
+type PinoLoggerType = {
+  info: (msg: string | unknown, ...args: unknown[]) => void;
+  debug: (msg: string | unknown, ...args: unknown[]) => void;
+  warn: (msg: string | unknown, ...args: unknown[]) => void;
+  error: (msg: string | unknown, ...args: unknown[]) => void;
+};
+
 export class PinoLogger implements ILogger {
-  private pinoLogger: any | null;
+  private pinoLogger: PinoLoggerType | null;
   private logLevel: LogLevel;
   private fallbackLogger: DefaultLogger;
 
@@ -44,27 +51,35 @@ export class PinoLogger implements ILogger {
               },
             }
           : undefined,
-      });
+      }) as PinoLoggerType;
     } catch (error: any) {
       this.pinoLogger = null;
       // Log error in development for debugging
       if (process.env.NODE_ENV !== 'production') {
-        console.error('PinoLogger initialization error:', error?.message || error);
+        console.error(
+          'PinoLogger initialization error:',
+          error?.message || error,
+        );
       }
     }
   }
 
   private logLevelToPinoLevel(level: LogLevel): string {
     switch (level) {
-      case LogLevel.ERROR: return 'error';
-      case LogLevel.WARN:  return 'warn';
-      case LogLevel.INFO:  return 'info';
-      case LogLevel.DEBUG: return 'debug';
-      default:             return 'info';
+      case LogLevel.ERROR:
+        return 'error';
+      case LogLevel.WARN:
+        return 'warn';
+      case LogLevel.INFO:
+        return 'info';
+      case LogLevel.DEBUG:
+        return 'debug';
+      default:
+        return 'info';
     }
   }
 
-  info(message: string, meta?: any): void {
+  info(message: string, meta?: unknown): void {
     if (this.logLevel < LogLevel.INFO) return;
 
     if (this.pinoLogger) {
@@ -79,7 +94,7 @@ export class PinoLogger implements ILogger {
     }
   }
 
-  debug(message: string, meta?: any): void {
+  debug(message: string, meta?: unknown): void {
     if (this.logLevel < LogLevel.DEBUG) return;
 
     if (this.pinoLogger) {
@@ -94,7 +109,7 @@ export class PinoLogger implements ILogger {
     }
   }
 
-  warn(message: string, meta?: any): void {
+  warn(message: string, meta?: unknown): void {
     if (this.logLevel < LogLevel.WARN) return;
 
     if (this.pinoLogger) {
@@ -109,7 +124,7 @@ export class PinoLogger implements ILogger {
     }
   }
 
-  error(message: string, meta?: any): void {
+  error(message: string, meta?: unknown): void {
     if (this.logLevel < LogLevel.ERROR) return;
 
     if (this.pinoLogger) {

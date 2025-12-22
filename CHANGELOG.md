@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.4] - 2025-12-22
+
+### Changed
+- **Biome Migration**: Migrated from ESLint/Prettier to Biome for linting and formatting
+  - Added `@biomejs/biome` as dev dependency
+  - Added `lint`, `lint:check`, and `format` scripts to package.json
+  - Integrated Biome check into build process (`npx biome check src --diagnostic-level=error`)
+  - Replaced `any` with `unknown` for `meta` parameters in logger methods to match `ILogger` interface
+  - Added `PinoLoggerType` type for better type safety of pino logger instance
+
+### Fixed
+- Fixed type safety issues by replacing `any` with `unknown` in logger method signatures
+- Improved type safety for `PinoLogger` by adding explicit type for pino logger instance
+
 ## [0.1.3] - 2025-12-13
 
 ### Changed
