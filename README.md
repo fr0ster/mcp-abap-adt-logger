@@ -1,4 +1,5 @@
 # @mcp-abap-adt/logger
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 Logger interface and implementations for MCP ABAP ADT packages.
 
