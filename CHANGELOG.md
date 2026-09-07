@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **`@mcp-abap-adt/interfaces` floor moves from `^0.1.16` to `^39.0.0`.**
+
+  Nothing here changed to allow it: this package uses `ILogger` and `LogLevel`,
+  and neither has moved in thirty-nine majors. The floor had simply been left
+  where it was while the contracts package went on without it.
+
+  What that cost was not compilation but the dependency graph. A consumer that
+  depends on both — `@mcp-abap-adt/adt-clients` does — ended up with two copies
+  of the contracts: its own, and `0.1.19` underneath this one. Structurally
+  identical interfaces from different files do not compare equal in TypeScript,
+  so the second copy is a source of errors that read as impossible.
+
+
 ## [0.2.0] - 2026-09-03
 
 ### Licence
