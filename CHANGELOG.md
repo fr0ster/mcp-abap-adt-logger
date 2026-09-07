@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-09-08
+
+**One copy of the contracts in a consumer's graph.**
+
+Carries 0.2.0's licence change with it: that version was tagged and never
+published, so this is the first release under LGPL-3.0-only.
+
 ### Changed
 
 - **`@mcp-abap-adt/interfaces` floor moves from `^0.1.16` to `^39.0.0`.**
