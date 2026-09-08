@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [Unreleased]
+
+### Changed
+
+- **README says what 0.3.0 asks of a consumer**: the 
+  floor, why one copy of the contracts matters and how to check for it, and what
+  the  line is — the fallback reporting itself,
+  not a failure. That message appears once per logger, so a test run building one
+  per file prints it per file, which is how it was mistaken for a fault.
+
 ## [0.3.0] - 2026-09-08
 
 **One copy of the contracts in a consumer's graph.**
