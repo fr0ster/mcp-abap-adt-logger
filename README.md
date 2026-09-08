@@ -9,11 +9,37 @@ Logger interface and implementations for MCP ABAP ADT packages.
 npm install @mcp-abap-adt/logger
 ```
 
+**It needs `@mcp-abap-adt/interfaces@^39.0.0`**, since 0.3.0. `ILogger` and
+`LogLevel` come from there, and nothing about them changed — the floor moved so
+that a consumer ends up with **one** copy of the contracts rather than two.
+
+That is worth a check after installing:
+
+```bash
+npm ls @mcp-abap-adt/interfaces     # one version, deduped everywhere
+```
+
+Two copies compile and then misbehave: structurally identical interfaces from
+different files do not compare equal in TypeScript, so a value from one is
+rejected where the other is expected, with an error that reads as impossible.
+
 For structured logging with Pino (optional):
 
 ```bash
 npm install pino pino-pretty
 ```
+
+`PinoLogger` works without them and falls back to `DefaultLogger`. It says so
+once on construction, outside production:
+
+```
+PinoLogger initialization error: Cannot find module 'pino'
+```
+
+That line is the fallback reporting itself, not a failure — logging continues.
+Set `NODE_ENV=production` to silence it, or install the two packages above. It
+appears once per logger, so a test run that builds one per file prints it per
+file.
 
 ## Usage
 

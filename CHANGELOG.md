@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-09-08
+
+**Documentation only.**
+
+Carries 0.3.0 with it: that version was tagged and never published, the same
+way 0.2.0 was, so this is the release that actually reaches npm — and the
+README a consumer installs is the one that explains the new floor.
+
+### Changed
+
+- **README says what 0.3.0 asks of a consumer**: the
+  `@mcp-abap-adt/interfaces@^39.0.0` floor, why one copy of the contracts
+  matters and how to check for it, and what the
+  `PinoLogger initialization error: Cannot find module 'pino'` line is — the
+  fallback reporting itself, not a failure. That message appears once per
+  logger, so a test run building one per file prints it per file, which is how
+  it was mistaken for a fault.
+
 ## [0.3.0] - 2026-09-08
 
 **One copy of the contracts in a consumer's graph.**
