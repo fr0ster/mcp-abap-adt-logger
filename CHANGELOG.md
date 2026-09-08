@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-09-08
+
+**Documentation only.**
+
+Carries 0.3.0 with it: that version was tagged and never published, the same
+way 0.2.0 was, so this is the release that actually reaches npm — and the
+README a consumer installs is the one that explains the new floor.
+
 ### Changed
 
 - **README says what 0.3.0 asks of a consumer**: the
