@@ -9,8 +9,8 @@
  * Uses process.stdout/stderr for clean output without stack traces
  */
 
-import type { ILogger } from '@mcp-abap-adt/interfaces';
-import { LogLevel } from '@mcp-abap-adt/interfaces';
+import type { ILogger } from '@mcp-abap-adt/interfaces-utils';
+import { LogLevel } from '@mcp-abap-adt/interfaces-utils';
 import { getLogLevel } from './types';
 
 export class DefaultLogger implements ILogger {
