@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-09-23
+
+### Changed
+
+- **BREAKING: `@mcp-abap-adt/interfaces-utils@^1.0.0` replaces
+  `@mcp-abap-adt/interfaces@^39.0.0`.** `ILogger` and `LogLevel` come from there
+  now; neither changed in any way.
+
+  **Why a logger should never have depended on the facade.** This package
+  imports exactly two names. The facade forwarded every contract in the family,
+  so it moved 48 majors while those two never changed — and every consumer of
+  this logger carried the whole ADT contract in its tree and inherited its
+  release rate. Eleven repositories depend on this package; in
+  `@mcp-abap-adt/adt-clients` the copy this dependency pulled in was the last
+  facade left in the tree.
+
+  The facade is deleted — decision 34 in `mcp-abap-adt-interfaces`.
+  `interfaces-utils` has had one release ever and holds exactly `ILogger` and
+  `LogLevel`.
+
+  **For a consumer this is an install, not an edit**, unless they import
+  `ILogger` or `LogLevel` from the facade themselves — in which case the import
+  path changes, and their own migration is the place for it.
+
 ## [Unreleased]
 
 ## [0.3.1] - 2026-09-08

@@ -9,14 +9,21 @@ Logger interface and implementations for MCP ABAP ADT packages.
 npm install @mcp-abap-adt/logger
 ```
 
-**It needs `@mcp-abap-adt/interfaces@^39.0.0`**, since 0.3.0. `ILogger` and
-`LogLevel` come from there, and nothing about them changed — the floor moved so
-that a consumer ends up with **one** copy of the contracts rather than two.
+**It needs `@mcp-abap-adt/interfaces-utils@^1.0.0`**, since 0.4.0. `ILogger` and
+`LogLevel` come from there, and nothing about them changed.
 
-That is worth a check after installing:
+It used to need `@mcp-abap-adt/interfaces@^39.0.0` — the facade that forwarded
+every contract in the family. That was the wrong dependency for a logger: this
+package imports exactly two names, and the facade moved 48 majors while the two
+of them never changed, so every consumer of this logger carried the whole ADT
+contract in its tree and was pinned to its release rate. The facade is deleted
+(decision 34 in `mcp-abap-adt-interfaces`); `interfaces-utils` has had **one**
+release, ever, and holds exactly `ILogger` and `LogLevel`.
+
+That is still worth a check after installing:
 
 ```bash
-npm ls @mcp-abap-adt/interfaces     # one version, deduped everywhere
+npm ls @mcp-abap-adt/interfaces-utils     # one version, deduped everywhere
 ```
 
 Two copies compile and then misbehave: structurally identical interfaces from
@@ -81,10 +88,10 @@ logger.warn('Warning message');
 
 ### Log Levels
 
-Log levels are defined in `@mcp-abap-adt/interfaces` and controlled by `AUTH_LOG_LEVEL` environment variable:
+Log levels are defined in `@mcp-abap-adt/interfaces-utils` and controlled by `AUTH_LOG_LEVEL` environment variable:
 
 ```typescript
-import { LogLevel } from '@mcp-abap-adt/interfaces';
+import { LogLevel } from '@mcp-abap-adt/interfaces-utils';
 
 // LogLevel enum values:
 // LogLevel.ERROR = 0
@@ -107,10 +114,10 @@ For backward compatibility, `DEBUG_AUTH_LOG=true` also sets level to debug.
 
 ### Logger Interface
 
-All logger implementations implement the `ILogger` interface from `@mcp-abap-adt/interfaces`:
+All logger implementations implement the `ILogger` interface from `@mcp-abap-adt/interfaces-utils`:
 
 ```typescript
-import type { ILogger } from '@mcp-abap-adt/interfaces';
+import type { ILogger } from '@mcp-abap-adt/interfaces-utils';
 
 interface ILogger {
   info(message: string, meta?: any): void;

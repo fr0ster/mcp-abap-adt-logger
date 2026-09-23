@@ -13,8 +13,8 @@
  * ```
  */
 
-import type { ILogger } from '@mcp-abap-adt/interfaces';
-import { LogLevel } from '@mcp-abap-adt/interfaces';
+import type { ILogger } from '@mcp-abap-adt/interfaces-utils';
+import { LogLevel } from '@mcp-abap-adt/interfaces-utils';
 import { DefaultLogger } from './default-logger';
 import { getLogLevel } from './types';
 

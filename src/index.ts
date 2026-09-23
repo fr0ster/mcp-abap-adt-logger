@@ -3,8 +3,8 @@
  * Logger interface and implementations for MCP ABAP ADT packages
  */
 
-import type { ILogger } from '@mcp-abap-adt/interfaces';
-import { LogLevel } from '@mcp-abap-adt/interfaces';
+import type { ILogger } from '@mcp-abap-adt/interfaces-utils';
+import { LogLevel } from '@mcp-abap-adt/interfaces-utils';
 import { DefaultLogger } from './default-logger';
 import { PinoLogger } from './pino-logger';
 
@@ -26,4 +26,4 @@ export const pinoLogger: ILogger = new PinoLogger();
 export { DefaultLogger, PinoLogger };
 
 // Re-export ILogger from interfaces for convenience
-export type { ILogger } from '@mcp-abap-adt/interfaces';
+export type { ILogger } from '@mcp-abap-adt/interfaces-utils';

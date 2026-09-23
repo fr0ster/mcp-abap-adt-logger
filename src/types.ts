@@ -2,13 +2,13 @@
  * Types and utilities for logger
  */
 
-import { LogLevel } from '@mcp-abap-adt/interfaces';
+import { LogLevel } from '@mcp-abap-adt/interfaces-utils';
 
 /**
- * Logger interface - re-exported from @mcp-abap-adt/interfaces for backward compatibility
- * @deprecated Use ILogger from @mcp-abap-adt/interfaces for new code
+ * Logger interface - re-exported from @mcp-abap-adt/interfaces-utils for backward compatibility
+ * @deprecated Use ILogger from @mcp-abap-adt/interfaces-utils for new code
  */
-export type Logger = import('@mcp-abap-adt/interfaces').ILogger;
+export type Logger = import('@mcp-abap-adt/interfaces-utils').ILogger;
 
 /**
  * Get log level from environment variable

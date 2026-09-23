@@ -2,7 +2,7 @@
  * Tests for logger module
  */
 
-import { LogLevel } from '@mcp-abap-adt/interfaces';
+import { LogLevel } from '@mcp-abap-adt/interfaces-utils';
 import { DefaultLogger, PinoLogger } from '../index';
 
 describe('Logger', () => {
