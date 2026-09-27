@@ -45,8 +45,10 @@ PinoLogger initialization error: Cannot find module 'pino'
 
 That line is the fallback reporting itself, not a failure — logging continues.
 Set `NODE_ENV=production` to silence it, or install the two packages above. It
-appears once per logger, so a test run that builds one per file prints it per
-file.
+appears once per `PinoLogger`, so a test run that builds one per file prints it
+per file. Importing the package prints nothing: the shared `pinoLogger` builds
+its `PinoLogger` on its first call, so a consumer using only `DefaultLogger`
+never sees the line.
 
 ## Usage
 
