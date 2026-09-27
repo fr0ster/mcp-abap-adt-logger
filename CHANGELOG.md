@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-09-28
+
+### Fixed
+
+- **Importing the package no longer prints `PinoLogger initialization error`.**
+  The shared `pinoLogger` was built at import, so every consumer without pino
+  saw the line, including one that only uses `DefaultLogger`:
+  `@mcp-abap-adt/auth-broker`'s `mcp-sso` printed it before its `--version`.
+  `pinoLogger` now builds its `PinoLogger` on its first call. Its type and
+  behaviour are unchanged, and a `PinoLogger` without pino still reports the
+  fallback, as 0.3.1 documents.
+
 ## [0.4.0] - 2026-09-23
 
 ### Changed
